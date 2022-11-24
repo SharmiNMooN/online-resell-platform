@@ -23,6 +23,7 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
+    const role = form.role.value;
 
     createUser(email, password)
       .then((result) => {
@@ -36,6 +37,7 @@ const Register = () => {
           email: user.email,
           name: name,
           image: photoURL,
+          role: role,
         };
         console.log({ payload, user });
         fetch(`${process.env.REACT_APP_SERVER_BASEURL}/users/register`, {
@@ -91,7 +93,7 @@ const Register = () => {
               height={400}
               width={500}
               roundedCircle
-              src="https://img.freepik.com/premium-vector/immigration-template-hand-drawn-cartoon-flat-illustration-document-with-visa-passport_2175-7964.jpg?w=2000"
+              src="https://img.capital.com/glossary/38-Buy%20and%20sell.jpg"
             ></Image>
           </div>
         </Col>
@@ -150,6 +152,25 @@ const Register = () => {
                 required
               />
             </Form.Group>
+            <div key={`inline-radio`} className="mb-3">
+              <Form.Check
+                checked
+                inline
+                label="buyer"
+                value="buyer"
+                name="role"
+                type="radio"
+                id={`inline-radio-2`}
+              />
+              <Form.Check
+                inline
+                label="seller"
+                value="seller"
+                name="role"
+                type="radio"
+                id={`inline-radio-3`}
+              />
+            </div>
             <Form.Group
               className="text-white d-flex "
               controlId="formBasicCheckbox"

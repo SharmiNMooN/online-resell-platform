@@ -176,7 +176,7 @@ const Login = () => {
               height={400}
               width={500}
               roundedCircle
-              src="https://img.freepik.com/premium-vector/immigration-consultant-hand-drawn-illustration-counseling-assistance-provide-advice-people_2175-8005.jpg?w=2000"
+              src="https://img.capital.com/glossary/38-Buy%20and%20sell.jpg"
             ></Image>
           </div>
         </Col>
