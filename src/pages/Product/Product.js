@@ -57,7 +57,8 @@ const Product = ({ product }) => {
               ) : (
                 ""
               )}
-            </span> Posted At: {new Date(product.createdAt).toLocaleString()}
+            </span>{" "}
+            || Posted At: {new Date(product.createdAt).toLocaleString()}
           </Card.Text>
         </Card.Footer>
       </Card>
