@@ -3,8 +3,10 @@ import Main from "../../layout/Main";
 import Login from "../../pages/Auth/Login/Login";
 import Register from "../../pages/Auth/Register/Register";
 import Blog from "../../pages/Blog/Blog";
+import CategoryWiseProduct from "../../pages/CategoryWiseProduct/CategoryWiseProduct";
 import Home from "../../pages/Home/Home";
 import NotFound from "../../pages/NotFound/NotFound";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -16,6 +18,16 @@ export const routes = createBrowserRouter([
         element: <Home></Home>,
         loader: () =>
           fetch(`${process.env.REACT_APP_SERVER_BASEURL}/categories`),
+      },
+      {
+        path: "/category/:categoryId",
+        element: (
+          //  (
+          // <PrivateRoute>
+          <CategoryWiseProduct></CategoryWiseProduct>
+        ),
+        // </PrivateRoute>
+        //  ),
       },
 
       {
