@@ -33,7 +33,7 @@ const Header = () => {
     >
       <Container>
         <Navbar.Brand>
-          <Link className="me-3" to="/">
+          <Link className="me-2" to="/">
             {<FaLaptop size={30}></FaLaptop>}
           </Link>
           <Link to="/">Buy & Sell Used Laptop</Link>
@@ -41,6 +41,13 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav variant="pills" className="me-auto m-auto">
+            <Nav.Item>
+              <Nav.Link eventKey="/">
+                <Link className=" text-dark" to="/">
+                  Home
+                </Link>
+              </Nav.Link>
+            </Nav.Item>
             <>
               {user?.uid ? (
                 <Nav.Item>
@@ -57,7 +64,7 @@ const Header = () => {
 
             <Nav.Item>
               <Nav.Link eventKey="/category">
-                <Link className=" text-dark" to="/category">
+                <Link className=" text-dark " to="/category">
                   Categories
                 </Link>
               </Nav.Link>
@@ -65,7 +72,7 @@ const Header = () => {
 
             <Nav.Item>
               <Nav.Link eventKey="/blog">
-                <Link className=" text-dark" to="/blog">
+                <Link className=" text-dark me-3" to="/blog">
                   Blog
                 </Link>
               </Nav.Link>
@@ -74,7 +81,7 @@ const Header = () => {
             <>
               {user?.uid ? (
                 <>
-                  <Link to="/" className="me-2">
+                  <Link to="/" className="me-3">
                     {user?.photoURL ? (
                       <Image
                         style={{ height: "30px" }}
@@ -94,7 +101,7 @@ const Header = () => {
               ) : (
                 <>
                   <Link
-                    className={`me-2 ${
+                    className={`me-3${
                       currentState === "/login" ? "d-none" : ""
                     }`}
                     to="/login"
@@ -102,7 +109,7 @@ const Header = () => {
                     Login
                   </Link>
                   <Link
-                    className={`${currentState === "/login" ? "" : "d-none"}`}
+                    className={`${currentState === "/login" ? "" : "d-none "}`}
                     to="/register"
                   >
                     Register
