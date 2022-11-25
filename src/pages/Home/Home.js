@@ -16,7 +16,7 @@ const Home = () => {
       <Row>
         <Col sx={12} sm={12} md={12} lg={12}>
           <h3 className="text-center text-primary fw-bolder">
-            Product Categories
+            Used Product Categories
           </h3>
         </Col>
 

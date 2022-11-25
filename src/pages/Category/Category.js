@@ -20,27 +20,11 @@ const Category = ({ category, isDetails = false }) => {
             </PhotoView>
           </PhotoProvider>
 
-          <Card.Text>
-            {category.description.length > 100 ? (
-              <>
-                {category.description.slice(0, 100) + "..."}{" "}
-                <Link to={`/category/${category._id}`}>See More</Link>{" "}
-              </>
-            ) : (
-              category.description
-            )}
-          </Card.Text>
-          {isDetails === true ? (
-            <Link className="btn btn-warning" to={`/services/${category._id}`}>
-              View details
-            </Link>
-          ) : (
-            ""
-          )}
+          <Card.Text>{category.description}</Card.Text>
+          <Link className="btn btn-primary" to={`/category/${category._id}`}>
+            View Products
+          </Link>
         </Card.Body>
-        {/* <Card.Footer className="d-flex justify-content-between">
-          Price: {category.price}/- tk
-        </Card.Footer> */}
       </Card>
     </Col>
   );
