@@ -10,6 +10,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import AddProduct from "../../pages/AddProduct/AddProduct";
 import MyProduct from "../../pages/MyProduct/MyProduct";
+import MyBuyer from "../../pages/MyBuyer/MyBuyer";
 
 export const routes = createBrowserRouter([
   {
@@ -44,6 +45,14 @@ export const routes = createBrowserRouter([
         element: (
             <PrivateRoute>
               <MyProduct></MyProduct>
+            </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-buyers",
+        element: (
+            <PrivateRoute>
+              <MyBuyer></MyBuyer>
             </PrivateRoute>
         ),
       },
