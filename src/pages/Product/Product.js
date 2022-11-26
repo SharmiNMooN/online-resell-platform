@@ -49,7 +49,7 @@ const Product = ({ product, loadProducts }) => {
             className="btn btn-primary"
             onClick={() => {
               if (["admin", "seller"].includes(user.role)) {
-                toast.error(`${user.role} can not book product`);
+                toast.error(`${user.role} can not buy this product`);
               } else {
                 setShowBookNowModal(true);
               }

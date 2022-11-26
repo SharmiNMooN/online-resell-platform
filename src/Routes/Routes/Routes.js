@@ -8,6 +8,7 @@ import Home from "../../pages/Home/Home";
 import NotFound from "../../pages/NotFound/NotFound";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Dashboard from "../../pages/Dashboard/Dashboard";
+import AddProduct from "../../pages/AddProduct/AddProduct";
 
 export const routes = createBrowserRouter([
   {
@@ -36,6 +37,16 @@ export const routes = createBrowserRouter([
             <Dashboard></Dashboard>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/add-product",
+        element: (
+          <PrivateRoute>
+            <AddProduct></AddProduct>
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch(`${process.env.REACT_APP_SERVER_BASEURL}/categories`),
       },
 
       {
