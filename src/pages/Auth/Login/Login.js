@@ -55,6 +55,7 @@ const Login = () => {
             console.log("logged in successfully.........", data);
             if (data.success) {
               localStorage.setItem("token", data.data.token);
+              localStorage.setItem("user", JSON.stringify(data.data.user));
               navigate(from, { replace: true });
             } else {
               console.log("Token not fetched...");
@@ -71,50 +72,6 @@ const Login = () => {
       });
   };
 
-  const handleGithubSignIn = () => {
-    providerLogin(githubProvider)
-      .then((result) => {
-        console.log({ result });
-        navigate(from, { replace: true });
-        const user = result.user;
-        console.log({
-          context: "github",
-          user,
-          email: user.email,
-          image: user.photoURL,
-          name: user.displayName,
-        });
-        const payload = {
-          email: user.email,
-          image: user.photoURL,
-          name: user.displayName,
-          role: "buyer",
-        };
-        fetch(`${process.env.REACT_APP_SERVER_BASEURL}/users/login`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setIsLoading(false);
-            console.log("logged in successfully.........", data);
-            if (data.success) {
-              localStorage.setItem("token", data.data.token);
-              navigate(from, { replace: true });
-            } else {
-              console.log("Token not fetched...");
-            }
-          })
-          .catch((error) => console.log(error))
-          .finally(() => {
-            setIsLoading(false);
-          });
-      })
-      .catch((error) => console.error(error));
-  };
 
   const from = location.state?.from?.pathname || "/";
 
@@ -148,6 +105,7 @@ const Login = () => {
             console.log("logged in successfully.........", data);
             if (data.success) {
               localStorage.setItem("token", data.data.token);
+              localStorage.setItem("user", JSON.stringify(data.data.user));
               navigate(from, { replace: true });
             } else {
               console.log("Token not fetched...");
@@ -237,13 +195,6 @@ const Login = () => {
                   >
                     {" "}
                     <FaGoogle></FaGoogle> Login with Google
-                  </Button>
-                  <Button
-                    onClick={handleGithubSignIn}
-                    variant="outline-light mb-4"
-                  >
-                    {" "}
-                    <FaGithub></FaGithub> Login with Github
                   </Button>
                 </ButtonGroup>
               </div>

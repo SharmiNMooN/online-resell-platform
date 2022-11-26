@@ -23,7 +23,7 @@ const Register = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    const role = form.role.value;
+    const role = form.role.value || "buyer";
 
     createUser(email, password)
       .then((result) => {
@@ -154,7 +154,6 @@ const Register = () => {
             </Form.Group>
             <div key={`inline-radio`} className="mb-3">
               <Form.Check
-                checked
                 inline
                 label="buyer"
                 value="buyer"
@@ -162,6 +161,7 @@ const Register = () => {
                 type="radio"
                 id={`inline-radio-2`}
               />
+
               <Form.Check
                 inline
                 label="seller"
@@ -181,7 +181,7 @@ const Register = () => {
                 label={
                   <>
                     I agree all statements in{" "}
-                    <Link to="/terms" className="text-dark">
+                    <Link id="terms" to="/terms" className="text-dark">
                       {" "}
                       Terms of service
                     </Link>
@@ -199,7 +199,9 @@ const Register = () => {
             </Button>
 
             <Button className="mb-4 mt-2 align-item-end" variant="warning">
-              <Link to="/login">Login</Link>
+              <Link id="login" to="/login">
+                Login
+              </Link>
             </Button>
             <Form.Text className=" mb-4 text-danger align-item-center me-2">
               {error}
