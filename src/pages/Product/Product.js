@@ -7,7 +7,7 @@ import { FaCheckDouble } from "react-icons/fa";
 import BookProduct from "../modals/BookProduct/BookProduct";
 import toast from "react-hot-toast";
 
-const Product = ({ product, loadProducts }) => {
+const Product = ({ product, loadProducts, fromSellerProduct=false }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [showBookNowModal, setShowBookNowModal] = React.useState(false);
   return (
@@ -45,18 +45,20 @@ const Product = ({ product, loadProducts }) => {
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <Card.Link
-            className="btn btn-primary"
-            onClick={() => {
-              if (["admin", "seller"].includes(user.role)) {
-                toast.error(`${user.role} can not buy this product`);
-              } else {
-                setShowBookNowModal(true);
-              }
-            }}
+
+          {!fromSellerProduct? <Card.Link
+              className="btn btn-primary"
+              onClick={() => {
+                if (["admin", "seller"].includes(user.role)) {
+                  toast.error(`${user.role} can not buy this product`);
+                } else {
+                  setShowBookNowModal(true);
+                }
+              }}
           >
             Book now
-          </Card.Link>
+          </Card.Link> : <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>}
+
         </Card.Body>
         <Card.Footer>
           <Card.Text>

@@ -9,6 +9,7 @@ import NotFound from "../../pages/NotFound/NotFound";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import AddProduct from "../../pages/AddProduct/AddProduct";
+import MyProduct from "../../pages/MyProduct/MyProduct";
 
 export const routes = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ export const routes = createBrowserRouter([
           <PrivateRoute>
             <Dashboard></Dashboard>
           </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-products",
+        element: (
+            <PrivateRoute>
+              <MyProduct></MyProduct>
+            </PrivateRoute>
         ),
       },
       {

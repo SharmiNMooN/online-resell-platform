@@ -1,13 +1,14 @@
 import { Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 function AddProduct() {
   const { data: allCategories } = useLoaderData();
   console.log(allCategories);
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
   console.log({ user });
@@ -58,6 +59,7 @@ function AddProduct() {
       .then((result) => {
         console.log(`Product created...`, result);
         toast.success(`Product created successfully`);
+        navigate("/my-products");
         form.reset();
       })
       .catch((error) => {
