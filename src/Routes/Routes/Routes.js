@@ -7,6 +7,7 @@ import CategoryWiseProduct from "../../pages/CategoryWiseProduct/CategoryWisePro
 import Home from "../../pages/Home/Home";
 import NotFound from "../../pages/NotFound/NotFound";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Dashboard from "../../pages/Dashboard/Dashboard";
 
 export const routes = createBrowserRouter([
   {
@@ -24,6 +25,15 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CategoryWiseProduct></CategoryWiseProduct>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
           </PrivateRoute>
         ),
       },

@@ -16,6 +16,7 @@ const Header = () => {
     logOut()
       .then(() => {
         localStorage.clear("token");
+        localStorage.clear("user");
       })
       .catch((error) => console.error(error));
   };
@@ -31,12 +32,12 @@ const Header = () => {
       bg="light"
       variant="light"
     >
-      <Container className="text-right">
+      <Container>
         <Navbar.Brand>
-          <Link className="me-2" to="/">
+          <Link className="me-2" id="home" to="/">
             {<FaLaptop size={30}></FaLaptop>}
           </Link>
-          <Link className="nav-title text-warning bold-fw" to="/">
+          <Link id="home1" to="/">
             Buy & Sell Used Laptop
           </Link>
         </Navbar.Brand>
@@ -44,8 +45,8 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav variant="pills" className="me-auto m-auto">
             <Nav.Item>
-              <Nav.Link eventKey="/">
-                <Link className=" text-dark" to="/">
+              <Nav.Link id="home2" eventKey=" /">
+                <Link id="home2" className=" text-dark" to="/">
                   Home
                 </Link>
               </Nav.Link>
@@ -53,8 +54,8 @@ const Header = () => {
             <>
               {user?.uid ? (
                 <Nav.Item>
-                  <Nav.Link eventKey="/dashboard">
-                    <Link className=" text-dark" to="/dashboard">
+                  <Nav.Link id="dashboard" eventKey="/dashboard">
+                    <Link id="dashboard" className=" text-dark" to="/dashboard">
                       Dashboard
                     </Link>
                   </Nav.Link>
@@ -65,16 +66,16 @@ const Header = () => {
             </>
 
             <Nav.Item>
-              <Nav.Link eventKey="/category">
-                <Link className=" text-dark " to="/category">
+              <Nav.Link id="category" eventKey="/category">
+                <Link id="category" className=" text-dark " to="/category">
                   Categories
                 </Link>
               </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link eventKey="/blog">
-                <Link className=" text-dark me-3" to="/blog">
+              <Nav.Link id="blog" eventKey="/blog">
+                <Link id="blog" className=" text-dark me-3" to="/blog">
                   Blog
                 </Link>
               </Nav.Link>
@@ -83,7 +84,7 @@ const Header = () => {
             <>
               {user?.uid ? (
                 <>
-                  <Link to="/" className="me-3">
+                  <Link id="home4" to="/" className="me-3">
                     {user?.photoURL ? (
                       <Image
                         style={{ height: "30px" }}
@@ -103,6 +104,7 @@ const Header = () => {
               ) : (
                 <>
                   <Link
+                    id="login"
                     className={`me-3${
                       currentState === "/login" ? "d-none" : ""
                     }`}
@@ -111,6 +113,7 @@ const Header = () => {
                     Login
                   </Link>
                   <Link
+                    id="register"
                     className={`${currentState === "/login" ? "" : "d-none "}`}
                     to="/register"
                   >
