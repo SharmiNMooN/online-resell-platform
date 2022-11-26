@@ -9,7 +9,9 @@ const Category = ({ category, isDetails = false }) => {
     <Col sx={12} sm={12} md={12} lg={12}>
       <Card className="mb-2" border="warning">
         <Card.Body>
-          <Card.Title className="fw-bold">{category.name}</Card.Title>
+          <Card.Title className="fw-bold text-warning">
+            {category.name}
+          </Card.Title>
           <PhotoProvider>
             <PhotoView src={category.image}>
               <Card.Img
@@ -21,7 +23,7 @@ const Category = ({ category, isDetails = false }) => {
           </PhotoProvider>
 
           <Card.Text>{category.description}</Card.Text>
-          <Link className="btn btn-primary" to={`/category/${category._id}`}>
+          <Link className="btn btn-warning" to={`/category/${category._id}`}>
             View Products
           </Link>
         </Card.Body>

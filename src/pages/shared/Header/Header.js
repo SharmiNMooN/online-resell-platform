@@ -31,12 +31,14 @@ const Header = () => {
       bg="light"
       variant="light"
     >
-      <Container>
+      <Container className="text-right">
         <Navbar.Brand>
           <Link className="me-2" to="/">
             {<FaLaptop size={30}></FaLaptop>}
           </Link>
-          <Link to="/">Buy & Sell Used Laptop</Link>
+          <Link className="nav-title text-warning bold-fw" to="/">
+            Buy & Sell Used Laptop
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

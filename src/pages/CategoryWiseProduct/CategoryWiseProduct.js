@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
 import { Link, useLocation, useParams } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import Product from "../Product/Product";
 
 const CategoryWiseProduct = () => {
@@ -14,10 +14,13 @@ const CategoryWiseProduct = () => {
   async function loadProducts() {
     setIsLoading(true);
     const url = `${process.env.REACT_APP_SERVER_BASEURL}/products/${categoryId}`;
-    axios.get(url, { headers: {
-        Authorization: `Bearer ${token}`,
-        "content-type": "application/json",
-      }})
+    axios
+      .get(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json",
+        },
+      })
       .then((res) => res.data)
       .then((data) => {
         console.log(`Category wise product>`, data.data);
@@ -37,10 +40,10 @@ const CategoryWiseProduct = () => {
   return (
     <div>
       <Row>
-        <h3 className="text-center text-info fw-bolder">Used Products List</h3>
+        <h3 className="text-center text-warning bold-fw">Used Products List</h3>
         {isLoading ? (
           <div className="text-center">
-            <Spinner className="" animation="border" variant="danger" />
+            <Spinner className="" animation="border" variant="primary" />
           </div>
         ) : (
           ""

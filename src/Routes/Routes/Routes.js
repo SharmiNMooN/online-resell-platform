@@ -22,12 +22,10 @@ export const routes = createBrowserRouter([
       {
         path: "/category/:categoryId",
         element: (
-          //  (
-          // <PrivateRoute>
-          <CategoryWiseProduct></CategoryWiseProduct>
+          <PrivateRoute>
+            <CategoryWiseProduct></CategoryWiseProduct>
+          </PrivateRoute>
         ),
-        // </PrivateRoute>
-        //  ),
       },
 
       {
