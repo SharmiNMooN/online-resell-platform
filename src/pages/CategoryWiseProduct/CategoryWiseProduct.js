@@ -10,11 +10,13 @@ const CategoryWiseProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   let { categoryId } = useParams();
-  const token = localStorage.getItem("token");
+
   async function loadProducts() {
     setIsLoading(true);
+    let token = localStorage.getItem("token");
+
     const url = `${process.env.REACT_APP_SERVER_BASEURL}/products/${categoryId}`;
-    axios
+    await axios
       .get(url, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -37,20 +39,25 @@ const CategoryWiseProduct = () => {
   useEffect(() => {
     loadProducts();
   }, []);
+
   return (
     <div>
       <Row>
-        <h3 className="text-center text-warning bold-fw">Used Products List</h3>
+        <h3 className="text-center text-info fw-bolder">Used Products List</h3>
         {isLoading ? (
           <div className="text-center">
-            <Spinner className="" animation="border" variant="primary" />
+            <Spinner className="" animation="border" variant="danger" />
           </div>
         ) : (
           ""
         )}
         {allProducts?.map((product, index) => (
           <Col sx={12} sm={12} md={6} lg={6}>
-            <Product key={index} product={product} isDetails={true}>
+            <Product
+              key={index}
+              product={product}
+              loadProducts={loadProducts}
+            >
               {" "}
             </Product>
           </Col>
