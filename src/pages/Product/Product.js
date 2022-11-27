@@ -3,7 +3,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Col, ListGroup, Row } from "react-bootstrap";
-import { FaCheckDouble, FaTrash } from "react-icons/fa";
+import { FaCheckDouble } from "react-icons/fa";
 import BookProduct from "../modals/BookProduct/BookProduct";
 import toast from "react-hot-toast";
 import ConfirmDialog from "../modals/ConfirmDialog/ConfirmDialog";
@@ -37,6 +37,27 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
         console.log(error);
       });
   }
+  async function addToAdverties(productId) {
+    const token = localStorage.getItem("token");
+    const url = `${process.env.REACT_APP_SERVER_BASEURL}/products/${productId}`;
+    await axios
+      .patch(url, JSON.stringify({ isAdvertised: true }), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json",
+        },
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(`product updated>`, data.data);
+        toast.success(`Product added to adverties list`);
+        loadProducts();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error);
+      });
+  }
 
   return (
     <Col sx={12} sm={12} md={12} lg={12}>
@@ -46,8 +67,12 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
           <PhotoProvider>
             <PhotoView src={product.image}>
               <Card.Img
+                className="m-auto"
                 variant="top"
-                style={{ maxHeight: "200px" }}
+                style={{
+                  maxHeight: "200px",
+                  maxWidth: "150px",
+                }}
                 src={product.image}
               />
             </PhotoView>
@@ -103,15 +128,21 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
                 DELETE
               </Card.Text>
             </Col>
-            <Col sx={6} sm={6} md={4} lg={6}>
-              {" "}
-              <Card.Text
-                className="btn btn-warning h3 m-2 text-white"
-                onClick={() => {}}
-              >
-                ADD TO ADVERTIES
-              </Card.Text>
-            </Col>
+            {product.status === "available" ? (
+              <Col sx={6} sm={6} md={4} lg={6}>
+                {" "}
+                <Card.Text
+                  className="btn btn-warning h3 m-2 text-white"
+                  onClick={() => {
+                    addToAdverties(product._id);
+                  }}
+                >
+                  ADVERTIES ITEM
+                </Card.Text>
+              </Col>
+            ) : (
+              ""
+            )}
           </Row>
         </Card.Body>
         <Card.Footer>
