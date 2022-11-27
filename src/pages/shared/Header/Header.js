@@ -43,7 +43,7 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav variant="pills" className="me-auto m-auto">
+          <Nav variant="pills" className="justify-content-end flex-grow-1 pe-3">
             <Nav.Item>
               <Nav.Link id="home2" eventKey=" /">
                 <Link id="home2" className=" text-dark" to="/">
@@ -97,7 +97,7 @@ const Header = () => {
                 <>
                   <Link
                     id="login"
-                    className={`me-3${
+                    className={`my-auto ${
                       currentState === "/login" ? "d-none" : ""
                     }`}
                     to="/login"
@@ -106,7 +106,9 @@ const Header = () => {
                   </Link>
                   <Link
                     id="register"
-                    className={`${currentState === "/login" ? "" : "d-none "}`}
+                    className={`my-auto ${
+                      currentState === "/login" ? "" : "d-none "
+                    }`}
                     to="/register"
                   >
                     Register

@@ -15,6 +15,28 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
   const [showConfirmModal, setShowConfirmModal] = React.useState(false);
   const [productId, setProductId] = React.useState(null);
 
+  async function reportToAdmin(productId) {
+    const token = localStorage.getItem("token");
+    const url = `${process.env.REACT_APP_SERVER_BASEURL}/products/${productId}`;
+    await axios
+      .patch(url, JSON.stringify({ isReportedToAdmin: true }), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json",
+        },
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(`product updated>`, data.data);
+        toast.success(`Reported successfully to admin`);
+        loadProducts();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error);
+      });
+  }
+
   async function deleteProduct(productId) {
     const token = localStorage.getItem("token");
     const url = `${process.env.REACT_APP_SERVER_BASEURL}/products`;
@@ -112,6 +134,21 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
                   }}
                 >
                   Book now
+                </Card.Link>
+              ) : (
+                <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>
+              )}
+            </Col>
+
+            <Col sx={6} sm={6} md={4} lg={5}>
+              {user.role === "buyer" ? (
+                <Card.Link
+                  className="btn btn-danger m-2"
+                  onClick={() => {
+                    reportToAdmin(product._id);
+                  }}
+                >
+                  Report to admin
                 </Card.Link>
               ) : (
                 <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>

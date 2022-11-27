@@ -51,13 +51,22 @@ const CategoryWiseProduct = () => {
         ) : (
           ""
         )}
-        {allProducts?.map((product, index) => (
-          <Col sx={12} sm={12} md={6} lg={6}>
-            <Product key={index} product={product} loadProducts={loadProducts}>
-              {" "}
-            </Product>
-          </Col>
-        ))}
+
+        {allProducts.length ? (
+          allProducts?.map((product, index) => (
+            <Col sx={12} sm={12} md={6} lg={6}>
+              <Product
+                key={index}
+                product={product}
+                loadProducts={loadProducts}
+              >
+                {" "}
+              </Product>
+            </Col>
+          ))
+        ) : (
+          <h3 className="text-center">No product found</h3>
+        )}
       </Row>
     </div>
   );
