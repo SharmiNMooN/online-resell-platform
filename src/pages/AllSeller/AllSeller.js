@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Spinner } from "react-bootstrap";
 import axios from "axios";
-import { FaCheckDouble, FaUserTimes } from "react-icons/fa";
+import { FaCheckDouble, FaUserCheck, FaUserTimes } from "react-icons/fa";
 import toast from "react-hot-toast";
 import ConfirmDialog from "../modals/ConfirmDialog/ConfirmDialog";
 
@@ -19,6 +19,30 @@ const AllSeller = () => {
     await axios
       .delete(url, {
         data: JSON.stringify({ userId }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json",
+        },
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(`Buyer deleted>`, data.data);
+        toast.success(`User deleted successfully`);
+        loadSellers();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  async function updateUser(userId) {
+    const url = `${process.env.REACT_APP_SERVER_BASEURL}/users/${userId}`;
+    await axios
+      .patch(url, JSON.stringify({ isVerified: true }), {
         headers: {
           Authorization: `Bearer ${token}`,
           "content-type": "application/json",
@@ -98,13 +122,25 @@ const AllSeller = () => {
                     <Card.Title>Seller Email:{seller.email}</Card.Title>
                   </Col>
                   <Col sx={12} sm={12} md={4} lg={4} className="text-center">
-                    <FaUserTimes
-                      className="h1 m-2 text-danger"
-                      onClick={() => {
-                        setUserId(seller._id);
-                        setShowConfirmModal(true);
-                      }}
-                    ></FaUserTimes>
+                    <Row>
+                      <Col>
+                        <FaUserTimes
+                          className="h1 m-2 text-danger"
+                          onClick={() => {
+                            setUserId(seller._id);
+                            setShowConfirmModal(true);
+                          }}
+                        ></FaUserTimes>
+                      </Col>
+                      <Col>
+                        <FaUserCheck
+                          className="h1 m-2 text-primary"
+                          onClick={() => {
+                            updateUser(seller._id);
+                          }}
+                        ></FaUserCheck>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </Card.Body>
