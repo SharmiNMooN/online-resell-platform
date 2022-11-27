@@ -2,14 +2,10 @@ import React from "react";
 
 import Card from "react-bootstrap/Card";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { Col, ListGroup, Row } from "react-bootstrap";
+import { Col, ListGroup } from "react-bootstrap";
 import { FaCheckDouble } from "react-icons/fa";
 
-const AdvertiesProduct = ({
-  product,
-  loadProducts,
-  fromSellerProduct = false,
-}) => {
+const AdvertiesProduct = ({ product }) => {
   return (
     <Col sx={12} sm={12} md={12} lg={12}>
       <Card className="mb-2" border="warning">

@@ -11,7 +11,7 @@ const Dashboard = () => {
       <>
         {user.role === "admin" ? (
           <Row className="m-auto">
-            <Col className="mt-2" sx={12} sm={12} md={6} lg={6}>
+            <Col className="mt-2" sx={12} sm={12} md={4} lg={4}>
               <Card
                 className="mb-2"
                 border="warning"
@@ -27,11 +27,28 @@ const Dashboard = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="mt-2" sx={12} sm={12} md={6} lg={6}>
+            <Col className="mt-2" sx={12} sm={12} md={4} lg={4}>
               <Card
                 className="mb-2"
                 border="warning"
                 bg="danger"
+                onClick={() => {
+                  navigate("/reported-product");
+                }}
+              >
+                <Card.Body>
+                  <Card.Title className="fw-bold text-center">
+                    {" "}
+                    Reported Product
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col className="mt-2" sx={12} sm={12} md={4} lg={4}>
+              <Card
+                className="mb-2"
+                border="warning"
+                bg="info"
                 onClick={() => {
                   navigate("/all-buyers");
                 }}

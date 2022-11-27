@@ -15,6 +15,7 @@ import AllBuyer from "../../pages/AllBuyer/AllBuyer";
 import AllSeller from "../../pages/AllSeller/AllSeller";
 import MyOrder from "../../pages/MyOrder/MyOrder";
 import Payment from "../../pages/Payment/Payment";
+import ReportedItem from "../../pages/ReportedItem/ReportedItem";
 
 export const routes = createBrowserRouter([
   {
@@ -82,6 +83,15 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyOrder></MyOrder>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/reported-product",
+        element: (
+          <PrivateRoute>
+            <ReportedItem></ReportedItem>
           </PrivateRoute>
         ),
       },
