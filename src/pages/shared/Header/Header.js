@@ -66,14 +66,6 @@ const Header = () => {
             </>
 
             <Nav.Item>
-              <Nav.Link id="category" eventKey="/category">
-                <Link id="category" className=" text-dark " to="/category">
-                  Categories
-                </Link>
-              </Nav.Link>
-            </Nav.Item>
-
-            <Nav.Item>
               <Nav.Link id="blog" eventKey="/blog">
                 <Link id="blog" className=" text-dark me-3" to="/blog">
                   Blog

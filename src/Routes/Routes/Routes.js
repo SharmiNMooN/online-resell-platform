@@ -13,6 +13,8 @@ import MyProduct from "../../pages/MyProduct/MyProduct";
 import MyBuyer from "../../pages/MyBuyer/MyBuyer";
 import AllBuyer from "../../pages/AllBuyer/AllBuyer";
 import AllSeller from "../../pages/AllSeller/AllSeller";
+import MyOrder from "../../pages/MyOrder/MyOrder";
+import Payment from "../../pages/Payment/Payment";
 
 export const routes = createBrowserRouter([
   {
@@ -76,6 +78,14 @@ export const routes = createBrowserRouter([
         ),
       },
       {
+        path: "/my-orders",
+        element: (
+          <PrivateRoute>
+            <MyOrder></MyOrder>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/add-product",
         element: (
           <PrivateRoute>
@@ -84,6 +94,15 @@ export const routes = createBrowserRouter([
         ),
         loader: () =>
           fetch(`${process.env.REACT_APP_SERVER_BASEURL}/categories`),
+      },
+
+      {
+        path: "/payment/:orderId",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(
+            `${process.env.REACT_APP_SERVER_BASEURL}/orders/${params.orderId}`
+          ),
       },
 
       {
