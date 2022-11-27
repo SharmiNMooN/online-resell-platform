@@ -13,7 +13,7 @@ function Slider() {
         <Carousel.Caption>
           <MovingText
             className="h1 text-warning"
-            type="effect3D"
+            type="jelly"
             duration="1000ms"
             timing="linear"
             iteration="infinite"

@@ -121,7 +121,7 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
         </ListGroup>
         <Card.Body>
           <Row>
-            <Col sx={6} sm={6} md={3} lg={3}>
+            <Col sx={6} sm={6} md={3} lg={4}>
               {!fromSellerProduct ? (
                 <Card.Link
                   className="btn btn-primary m-2"
@@ -140,8 +140,8 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
               )}
             </Col>
 
-            <Col sx={6} sm={6} md={4} lg={5}>
-              {user.role === "buyer" ? (
+            {user.role === "buyer" ? (
+              <Col sx={6} sm={6} md={4} lg={4}>
                 <Card.Link
                   className="btn btn-danger m-2"
                   onClick={() => {
@@ -150,10 +150,10 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
                 >
                   Report to admin
                 </Card.Link>
-              ) : (
-                <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>
-              )}
-            </Col>
+              </Col>
+            ) : (
+              ""
+            )}
             {fromSellerProduct ? (
               <Col sx={6} sm={6} md={3} lg={2}>
                 {" "}
