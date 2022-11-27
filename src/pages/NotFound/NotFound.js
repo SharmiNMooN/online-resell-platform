@@ -1,10 +1,11 @@
 import React from "react";
+import { Image } from "react-bootstrap";
 
 const NotFound = () => {
   return (
     <div className="container text-center">
-      <h2>404 Page Not Found</h2>
-      <p>Sorry, This page doesn't exist</p>
+      <h1 className="text-danger">Sorry, This page doesn't exist</h1>
+      <Image src="https://cdn.svgator.com/images/2022/01/404-page-animation-example.gif"></Image>
     </div>
   );
 };
