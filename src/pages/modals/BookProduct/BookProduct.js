@@ -2,6 +2,7 @@ import { FloatingLabel, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function BookProduct(props) {
   console.log({ context: BookProduct.name, props });
@@ -41,6 +42,7 @@ function BookProduct(props) {
       )
       .then((result) => {
         console.log(`order confirmed...`, result);
+        toast.success(`Item is booked successfully`);
         props.loadProducts();
         form.reset();
       })
