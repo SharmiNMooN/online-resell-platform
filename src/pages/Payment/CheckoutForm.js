@@ -33,7 +33,7 @@ const CheckoutForm = ({ order }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [buyingPrice]);
+  }, [buyingPrice, token]);
 
   console.log(stripe, !clientSecret, processing);
   const handleSubmit = async (event) => {
