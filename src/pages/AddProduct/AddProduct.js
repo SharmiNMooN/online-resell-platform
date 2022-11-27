@@ -6,6 +6,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 function AddProduct() {
+  document.title = "AddProduct";
   const { data: allCategories } = useLoaderData();
   console.log(allCategories);
   const navigate = useNavigate();

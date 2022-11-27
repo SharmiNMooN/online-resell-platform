@@ -10,6 +10,7 @@ import Category from "../Category/Category";
 import AdvertiesProduct from "../AdvertiesProduct/AdvertiesProduct";
 
 const Home = () => {
+  document.title = "Home";
   const { data: allCategories } = useLoaderData();
   console.log(allCategories);
   const [adverties, setAdverties] = useState([]);

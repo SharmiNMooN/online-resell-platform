@@ -3,6 +3,7 @@ import { Card, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  document.title = "Dashboard";
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
