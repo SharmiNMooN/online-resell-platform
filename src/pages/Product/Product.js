@@ -98,36 +98,42 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          {!fromSellerProduct ? (
-            <Card.Link
-              className="btn btn-primary"
-              onClick={() => {
-                if (["admin", "seller"].includes(user.role)) {
-                  toast.error(`${user.role} can not buy this product`);
-                } else {
-                  setShowBookNowModal(true);
-                }
-              }}
-            >
-              Book now
-            </Card.Link>
-          ) : (
-            <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>
-          )}
-
           <Row>
-            <Col sx={6} sm={6} md={3} lg={2}>
-              {" "}
-              <Card.Text
-                className="btn btn-danger h3 m-2 text-white"
-                onClick={() => {
-                  setProductId(product._id);
-                  setShowConfirmModal(true);
-                }}
-              >
-                DELETE
-              </Card.Text>
+            <Col sx={6} sm={6} md={3} lg={3}>
+              {!fromSellerProduct ? (
+                <Card.Link
+                  className="btn btn-primary m-2"
+                  onClick={() => {
+                    if (["admin", "seller"].includes(user.role)) {
+                      toast.error(`${user.role} can not buy this product`);
+                    } else {
+                      setShowBookNowModal(true);
+                    }
+                  }}
+                >
+                  Book now
+                </Card.Link>
+              ) : (
+                <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>
+              )}
             </Col>
+            {fromSellerProduct ? (
+              <Col sx={6} sm={6} md={3} lg={2}>
+                {" "}
+                <Card.Text
+                  className="btn btn-danger h3 m-2 text-white"
+                  onClick={() => {
+                    setProductId(product._id);
+                    setShowConfirmModal(true);
+                  }}
+                >
+                  DELETE
+                </Card.Text>
+              </Col>
+            ) : (
+              ""
+            )}
+
             {user.role === "seller" && product.status === "available" ? (
               <Col sx={6} sm={6} md={4} lg={6}>
                 {" "}

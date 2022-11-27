@@ -59,19 +59,21 @@ const Home = () => {
             ""
           )}
 
-          {adverties.length
-            ? adverties?.map((product, index) => (
-                <Col sx={12} sm={12} md={6} lg={4}>
-                  <AdvertiesProduct
-                    key={index}
-                    product={product}
-                    loadProducts={loadAdvertiesProduct}
-                  >
-                    {" "}
-                  </AdvertiesProduct>
-                </Col>
-              ))
-            : ""}
+          <Row>
+            {adverties.length
+              ? adverties?.map((product, index) => (
+                  <Col sx={12} sm={12} md={6} lg={4}>
+                    <AdvertiesProduct
+                      key={index}
+                      product={product}
+                      loadProducts={loadAdvertiesProduct}
+                    >
+                      {" "}
+                    </AdvertiesProduct>
+                  </Col>
+                ))
+              : ""}
+          </Row>
         </Col>
       </Row>
     </div>

@@ -24,9 +24,6 @@ const Footer = () => {
               <div className="mt-4">
                 <h5 className="text-center">Navigations</h5>
                 <Nav className="flex-column text-center">
-                  <Nav.Link className="text-black" href="/category">
-                    Categories
-                  </Nav.Link>
                   <Nav.Link className="text-black" href="/blog">
                     Blog
                   </Nav.Link>
