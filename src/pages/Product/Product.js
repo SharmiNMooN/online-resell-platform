@@ -128,7 +128,7 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
                 DELETE
               </Card.Text>
             </Col>
-            {product.status === "available" ? (
+            {user.role === "seller" && product.status === "available" ? (
               <Col sx={6} sm={6} md={4} lg={6}>
                 {" "}
                 <Card.Text
