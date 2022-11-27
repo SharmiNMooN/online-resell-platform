@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Col, Row, Spinner } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";

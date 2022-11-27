@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, Col, Row, Spinner } from "react-bootstrap";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FaCheckDouble, FaUserTimes } from "react-icons/fa";
 import toast from "react-hot-toast";
@@ -8,11 +9,31 @@ import ConfirmDialog from "../modals/ConfirmDialog/ConfirmDialog";
 const AllBuyer = () => {
   document.title = "AllBuyer";
 
-  const [allBuyers, setAllBuyers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [userId, setUserId] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = React.useState(false);
   let token = localStorage.getItem("token");
+
+  const {
+    data: allBuyers,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["allBuyers"],
+    queryFn: async () => {
+      const url = `${process.env.REACT_APP_SERVER_BASEURL}/users/buyers`;
+      try {
+        const res = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-type": "application/json",
+          },
+        });
+
+        console.log(`res.data---`, res.data);
+        return res.data.data;
+      } catch (error) {}
+    },
+  });
 
   async function deleteUser(userId) {
     const url = `${process.env.REACT_APP_SERVER_BASEURL}/users/delete-user`;
@@ -28,44 +49,13 @@ const AllBuyer = () => {
       .then((data) => {
         console.log(`Buyer deleted>`, data.data);
         toast.success(`User deleted successfully`);
-        loadBuyers();
+        refetch();
       })
       .catch((error) => {
         toast.error(error.message);
         console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   }
-
-  async function loadBuyers() {
-    setIsLoading(true);
-
-    const url = `${process.env.REACT_APP_SERVER_BASEURL}/users/buyers`;
-    await axios
-      .get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "content-type": "application/json",
-        },
-      })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log(`All Buyers>`, data.data);
-        setAllBuyers(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
-  useEffect(() => {
-    loadBuyers();
-  }, []);
 
   return (
     <div>
