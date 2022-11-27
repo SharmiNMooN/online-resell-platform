@@ -4,7 +4,6 @@ import { useLoaderData } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 
 import Slider from "../shared/Slider/Slider";
-import Card from "react-bootstrap/Card";
 import Category from "../Category/Category";
 
 const Home = () => {

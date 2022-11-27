@@ -4,8 +4,8 @@ import Form from "react-bootstrap/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider } from "firebase/auth";
+import { FaGoogle } from "react-icons/fa";
 import { Col, Image, Row, Spinner } from "react-bootstrap";
 import "./Login.css";
 
@@ -20,7 +20,6 @@ const Login = () => {
   const { providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
 
   const handleGoogleSignIn = () => {
     setIsLoading(true);
@@ -71,7 +70,6 @@ const Login = () => {
         setIsLoading(false);
       });
   };
-
 
   const from = location.state?.from?.pathname || "/";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Product from "../Product/Product";
 
@@ -53,11 +53,7 @@ const CategoryWiseProduct = () => {
         )}
         {allProducts?.map((product, index) => (
           <Col sx={12} sm={12} md={6} lg={6}>
-            <Product
-              key={index}
-              product={product}
-              loadProducts={loadProducts}
-            >
+            <Product key={index} product={product} loadProducts={loadProducts}>
               {" "}
             </Product>
           </Col>

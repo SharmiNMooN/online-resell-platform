@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {Card, Col, Row, Spinner} from "react-bootstrap";
+import { Card, Col, Row, Spinner } from "react-bootstrap";
 import axios from "axios";
-import {PhotoProvider, PhotoView} from "react-photo-view";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const MyBuyer = () => {
   document.title = "MyBuyer";
@@ -24,7 +24,7 @@ const MyBuyer = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log(`My Buyers>`, data.data);
-          setAllBuyers(data.data);
+        setAllBuyers(data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -52,31 +52,33 @@ const MyBuyer = () => {
 
         {allBuyers?.map((buyer, index) => (
           <Col sx={12} sm={12} md={6} lg={6}>
-              <Card className="mb-2" border="warning">
-                <Card.Body>
-                  <Row>
-                    <Col sx={12} sm={12} md={6} lg={6}>
-                      <Card.Title className="fw-bold">Buyer: {buyer.userName}</Card.Title>
-                      <Card.Title>Buyer Email:{buyer.userEmail}</Card.Title>
-                      <Card.Subtitle>Buyer Phone:{buyer.mobileNumber}</Card.Subtitle>
-                      <Card.Text>Meet Location:{buyer.meetLocation}</Card.Text>
-                    </Col>
-                    <Col sx={12} sm={12} md={6} lg={6}>
-                      <PhotoProvider>
-                        <PhotoView src={buyer.image}>
-                          <Card.Img
-                              variant="top"
-                              style={{ maxHeight: "200px", maxWidth: "150px" }}
-                              src={buyer.image}
-                          />
-                        </PhotoView>
-                      </PhotoProvider>
-
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-
+            <Card className="mb-2" border="warning">
+              <Card.Body>
+                <Row>
+                  <Col sx={12} sm={12} md={6} lg={6}>
+                    <Card.Title className="fw-bold">
+                      Buyer: {buyer.userName}
+                    </Card.Title>
+                    <Card.Title>Buyer Email:{buyer.userEmail}</Card.Title>
+                    <Card.Subtitle>
+                      Buyer Phone:{buyer.mobileNumber}
+                    </Card.Subtitle>
+                    <Card.Text>Meet Location:{buyer.meetLocation}</Card.Text>
+                  </Col>
+                  <Col sx={12} sm={12} md={6} lg={6}>
+                    <PhotoProvider>
+                      <PhotoView src={buyer.image}>
+                        <Card.Img
+                          variant="top"
+                          style={{ maxHeight: "200px", maxWidth: "150px" }}
+                          src={buyer.image}
+                        />
+                      </PhotoView>
+                    </PhotoProvider>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
           </Col>
         ))}
       </Row>
