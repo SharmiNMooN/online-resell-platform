@@ -4,17 +4,12 @@ import Card from "react-bootstrap/Card";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Col, ListGroup, Row } from "react-bootstrap";
 import { FaCheckDouble } from "react-icons/fa";
-import BookProduct from "../modals/BookProduct/BookProduct";
-import toast from "react-hot-toast";
-import ConfirmDialog from "../modals/ConfirmDialog/ConfirmDialog";
 
 const AdvertiesProduct = ({
   product,
   loadProducts,
   fromSellerProduct = false,
 }) => {
-  const [showBookNowModal, setShowBookNowModal] = React.useState(false);
-
   return (
     <Col sx={12} sm={12} md={12} lg={12}>
       <Card className="mb-2" border="warning">
@@ -70,12 +65,6 @@ const AdvertiesProduct = ({
           </Card.Text>
         </Card.Footer>
       </Card>
-      <BookProduct
-        show={showBookNowModal}
-        loadProducts={loadProducts}
-        onHide={() => setShowBookNowModal(false)}
-        product={product}
-      />
     </Col>
   );
 };
