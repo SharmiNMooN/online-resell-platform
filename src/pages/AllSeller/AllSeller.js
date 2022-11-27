@@ -5,10 +5,10 @@ import { FaCheckDouble, FaUserTimes } from "react-icons/fa";
 import toast from "react-hot-toast";
 import ConfirmDialog from "../modals/ConfirmDialog/ConfirmDialog";
 
-const AllBuyer = () => {
-  document.title = "AllBuyer";
+const AllSeller = () => {
+  document.title = "AllSeller";
 
-  const [allBuyers, setAllBuyers] = useState([]);
+  const [allSellers, setAllSellers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [userId, setUserId] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = React.useState(false);
@@ -28,7 +28,7 @@ const AllBuyer = () => {
       .then((data) => {
         console.log(`Buyer deleted>`, data.data);
         toast.success(`User deleted successfully`);
-        loadBuyers();
+        loadSellers();
       })
       .catch((error) => {
         toast.error(error.message);
@@ -39,10 +39,10 @@ const AllBuyer = () => {
       });
   }
 
-  async function loadBuyers() {
+  async function loadSellers() {
     setIsLoading(true);
 
-    const url = `${process.env.REACT_APP_SERVER_BASEURL}/users/buyers`;
+    const url = `${process.env.REACT_APP_SERVER_BASEURL}/users/sellers`;
     await axios
       .get(url, {
         headers: {
@@ -52,8 +52,8 @@ const AllBuyer = () => {
       })
       .then((res) => res.data)
       .then((data) => {
-        console.log(`All Buyers>`, data.data);
-        setAllBuyers(data.data);
+        console.log(`All Sellers>`, data.data);
+        setAllSellers(data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -64,13 +64,13 @@ const AllBuyer = () => {
   }
 
   useEffect(() => {
-    loadBuyers();
+    loadSellers();
   }, []);
 
   return (
     <div>
       <Row>
-        <h3 className="text-center text-info fw-bolder">All Buyers</h3>
+        <h3 className="text-center text-info fw-bolder">All Seller</h3>
         {isLoading ? (
           <div className="text-center">
             <Spinner className="" animation="border" variant="danger" />
@@ -79,29 +79,29 @@ const AllBuyer = () => {
           ""
         )}
 
-        {allBuyers?.map((buyer, index) => (
+        {allSellers?.map((seller, index) => (
           <Col sx={12} sm={12} md={6} lg={6}>
             <Card className="mb-2" border="warning">
               <Card.Body>
                 <Row>
                   <Col sx={12} sm={12} md={8} lg={8}>
                     <Card.Title className="fw-bold">
-                      Buyer: {buyer.name}{" "}
+                      Seller: {seller.name}{" "}
                       <span>
-                        {buyer.isVerified ? (
+                        {seller.isVerified ? (
                           <FaCheckDouble className="text-success"></FaCheckDouble>
                         ) : (
                           ""
                         )}
                       </span>{" "}
                     </Card.Title>
-                    <Card.Title>Buyer Email:{buyer.email}</Card.Title>
+                    <Card.Title>Seller Email:{seller.email}</Card.Title>
                   </Col>
                   <Col sx={12} sm={12} md={4} lg={4} className="text-center">
                     <FaUserTimes
                       className="h1 m-2 text-danger"
                       onClick={() => {
-                        setUserId(buyer._id);
+                        setUserId(seller._id);
                         setShowConfirmModal(true);
                       }}
                     ></FaUserTimes>
@@ -123,4 +123,4 @@ const AllBuyer = () => {
   );
 };
 
-export default AllBuyer;
+export default AllSeller;

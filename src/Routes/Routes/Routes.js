@@ -12,6 +12,7 @@ import AddProduct from "../../pages/AddProduct/AddProduct";
 import MyProduct from "../../pages/MyProduct/MyProduct";
 import MyBuyer from "../../pages/MyBuyer/MyBuyer";
 import AllBuyer from "../../pages/AllBuyer/AllBuyer";
+import AllSeller from "../../pages/AllSeller/AllSeller";
 
 export const routes = createBrowserRouter([
   {
@@ -62,6 +63,15 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AllBuyer></AllBuyer>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/all-sellers",
+        element: (
+          <PrivateRoute>
+            <AllSeller></AllSeller>
           </PrivateRoute>
         ),
       },
