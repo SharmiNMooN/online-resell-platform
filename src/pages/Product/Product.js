@@ -2,14 +2,42 @@ import React from "react";
 
 import Card from "react-bootstrap/Card";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { Col, ListGroup } from "react-bootstrap";
-import { FaCheckDouble } from "react-icons/fa";
+import { Col, ListGroup, Row } from "react-bootstrap";
+import { FaCheckDouble, FaTrash } from "react-icons/fa";
 import BookProduct from "../modals/BookProduct/BookProduct";
 import toast from "react-hot-toast";
+import ConfirmDialog from "../modals/ConfirmDialog/ConfirmDialog";
+import axios from "axios";
 
-const Product = ({ product, loadProducts, fromSellerProduct=false }) => {
+const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [showBookNowModal, setShowBookNowModal] = React.useState(false);
+  const [showConfirmModal, setShowConfirmModal] = React.useState(false);
+  const [productId, setProductId] = React.useState(null);
+
+  async function deleteProduct(productId) {
+    const token = localStorage.getItem("token");
+    const url = `${process.env.REACT_APP_SERVER_BASEURL}/products`;
+    await axios
+      .delete(url, {
+        data: JSON.stringify({ productId }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "content-type": "application/json",
+        },
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(`product deleted>`, data.data);
+        toast.success(`Product deleted successfully`);
+        loadProducts();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error);
+      });
+  }
+
   return (
     <Col sx={12} sm={12} md={12} lg={12}>
       <Card className="mb-2" border="warning">
@@ -45,8 +73,8 @@ const Product = ({ product, loadProducts, fromSellerProduct=false }) => {
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>
-
-          {!fromSellerProduct? <Card.Link
+          {!fromSellerProduct ? (
+            <Card.Link
               className="btn btn-primary"
               onClick={() => {
                 if (["admin", "seller"].includes(user.role)) {
@@ -55,10 +83,36 @@ const Product = ({ product, loadProducts, fromSellerProduct=false }) => {
                   setShowBookNowModal(true);
                 }
               }}
-          >
-            Book now
-          </Card.Link> : <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>}
+            >
+              Book now
+            </Card.Link>
+          ) : (
+            <Card.Text>Status: {product.status.toUpperCase()}</Card.Text>
+          )}
 
+          <Row>
+            <Col sx={6} sm={6} md={3} lg={2}>
+              {" "}
+              <Card.Text
+                className="btn btn-danger h3 m-2 text-white"
+                onClick={() => {
+                  setProductId(product._id);
+                  setShowConfirmModal(true);
+                }}
+              >
+                DELETE
+              </Card.Text>
+            </Col>
+            <Col sx={6} sm={6} md={4} lg={6}>
+              {" "}
+              <Card.Text
+                className="btn btn-warning h3 m-2 text-white"
+                onClick={() => {}}
+              >
+                ADD TO ADVERTIES
+              </Card.Text>
+            </Col>
+          </Row>
         </Card.Body>
         <Card.Footer>
           <Card.Text>
@@ -80,6 +134,14 @@ const Product = ({ product, loadProducts, fromSellerProduct=false }) => {
         onHide={() => setShowBookNowModal(false)}
         product={product}
       />
+
+      <ConfirmDialog
+        title="Are you confirm to DELETE product?"
+        show={showConfirmModal}
+        userId={productId}
+        onHide={() => setShowConfirmModal(false)}
+        handler={deleteProduct}
+      ></ConfirmDialog>
     </Col>
   );
 };

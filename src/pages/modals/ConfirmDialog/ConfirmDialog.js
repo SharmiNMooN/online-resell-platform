@@ -17,6 +17,7 @@ function ConfirmDialog(props) {
       </Modal.Header>
       <Modal.Footer>
         <Button
+          className="btn btn-danger"
           onClick={() => {
             props.handler(userId);
             props.onHide();
