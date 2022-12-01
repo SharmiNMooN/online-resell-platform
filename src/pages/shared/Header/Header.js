@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import { Image } from "react-bootstrap";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
   const location = useLocation();
   const [currentState, setCurrentState] = useState("");
   const handleLogOut = () => {
@@ -52,7 +53,7 @@ const Header = () => {
               </Nav.Link>
             </Nav.Item>
             <>
-              {user?.uid ? (
+              {token && user?.uid ? (
                 <Nav.Item>
                   <Nav.Link id="dashboard" eventKey="/dashboard">
                     <Link id="dashboard" className=" text-dark" to="/dashboard">
@@ -74,7 +75,7 @@ const Header = () => {
             </Nav.Item>
 
             <>
-              {user?.uid ? (
+              {token && user?.uid ? (
                 <>
                   <Link id="home4" to="/" className="me-3">
                     {user?.photoURL ? (
