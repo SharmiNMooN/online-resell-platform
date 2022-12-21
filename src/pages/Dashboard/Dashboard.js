@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import "./Dashboard.css";
 const Dashboard = () => {
   document.title = "Dashboard";
   const navigate = useNavigate();
@@ -131,9 +131,8 @@ const Dashboard = () => {
           <Row>
             <Col className="mt-2 m-auto" sx={12} sm={12} md={6} lg={6}>
               <Card
-                className="mb-2"
+                className="mb-2 card-bg-color text-white"
                 border="warning"
-                bg="warning"
                 onClick={() => {
                   navigate("/my-orders");
                 }}

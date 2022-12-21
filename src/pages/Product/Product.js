@@ -83,7 +83,7 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
 
   return (
     <Col sx={12} sm={12} md={12} lg={12}>
-      <Card className="mb-2" border="warning">
+      <Card className="mb-2">
         <Card.Body>
           <Card.Title className="fw-bold">{product.name}</Card.Title>
           <PhotoProvider>
@@ -92,6 +92,8 @@ const Product = ({ product, loadProducts, fromSellerProduct = false }) => {
                 className="m-auto"
                 variant="top"
                 style={{
+                  minHeight: "200px",
+                  minWidth: "150px",
                   maxHeight: "200px",
                   maxWidth: "150px",
                 }}

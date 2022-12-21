@@ -43,7 +43,9 @@ const CategoryWiseProduct = () => {
   return (
     <div>
       <Row>
-        <h3 className="text-center text-info fw-bolder">Used Products List</h3>
+        <h3 className="text-center text-primary fw-bolder">
+          Used Products List
+        </h3>
         {isLoading ? (
           <div className="text-center">
             <Spinner className="" animation="border" variant="danger" />
